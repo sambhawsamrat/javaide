@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="javaide:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>javaide</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="javaide-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="javaide:war exploded" />
+    </root>
+  </artifact>
+</component>
