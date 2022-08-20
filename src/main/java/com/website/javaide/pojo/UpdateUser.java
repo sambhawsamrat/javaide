@@ -1,20 +1,31 @@
-package com.website.javaide.entity;
+package com.website.javaide.pojo;
+
+import com.website.javaide.constants.UpdateType;
 
 public class UpdateUser {
 
+    private final Long userId;
     private String name;
     private String email;
     private String password;
-    private UpdateType updateType;
+    private Integer verified;
+    private Integer updateType;
 
-    public UpdateUser() {
+    public UpdateUser(Long userId) {
+        this.userId = userId;
     }
 
-    public UpdateUser(String name, String email, String password, UpdateType updateType) {
+    public UpdateUser(Long userId, String name, String email, String password, Integer verified, Integer updateType) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.verified = verified;
         this.updateType = updateType;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 
     public String getName() {
@@ -41,11 +52,19 @@ public class UpdateUser {
         this.password = password;
     }
 
-    public UpdateType getUpdateType() {
+    public Integer getVerified() {
+        return verified;
+    }
+
+    public void setVerified(Integer verified) {
+        this.verified = verified;
+    }
+
+    public Integer getUpdateType() {
         return updateType;
     }
 
-    public void setUpdateType(UpdateType updateType) {
+    public void setUpdateType(Integer updateType) {
         this.updateType = updateType;
     }
 }

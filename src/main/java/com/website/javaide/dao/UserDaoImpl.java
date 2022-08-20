@@ -1,8 +1,9 @@
 package com.website.javaide.dao;
 
-import com.website.javaide.entity.LoginUser;
-import com.website.javaide.entity.SignupUser;
-import com.website.javaide.entity.UpdateUser;
+import com.website.javaide.constants.UpdateType;
+import com.website.javaide.pojo.LoginUser;
+import com.website.javaide.pojo.SignupUser;
+import com.website.javaide.pojo.UpdateUser;
 import com.website.javaide.entity.User;
 import com.website.javaide.jdbc.DatabaseConnection;
 
@@ -13,49 +14,127 @@ import java.sql.SQLException;
 
 public class UserDaoImpl implements UserDao {
 
-    private Connection connection;
+    private final Connection connection;
 
     public UserDaoImpl() {
         connection = DatabaseConnection.getInstance();
     }
 
     @Override
-    public User getUser(LoginUser loginUser) {
-        String query = "SELECT userId, email, password, verified FROM user_table WHERE email=? and password=?";
-        try{
-            PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, loginUser.getEmail());
-            stmt.setString(2, loginUser.getPassword());
+    public User getUser(String email) {
+        User user = null;
+        PreparedStatement stmt = null;
+        String query = "SELECT `userid`, `name`, `password`, `verified` FROM `user_table` WHERE `email`=?";
+
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, email);
             ResultSet result = stmt.executeQuery();
 
-            String db_username = "";
-            String db_password = "";
-
             while (result.next()) {
-                db_username = result.getString("username");
-                db_password = result.getString("password");
+                user = new User(result.getLong("userid"));
+                user.setEmail(email);
+                user.setName(result.getString("name"));
+                user.setPassword(result.getString("password"));
+                user.setVerified(result.getInt("verified"));
             }
-            stmt.close();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            close(stmt);
         }
 
-        return null;
+        return user;
+    }
+
+    @Override
+    public User getUser(LoginUser loginUser) {
+        return getUser(loginUser.getEmail());
     }
 
     @Override
     public void addUser(SignupUser signupUser) {
+        PreparedStatement stmt = null;
+        String query = "INSERT INTO `user_table` (`name`, `email`, `password`, `verified`) VALUES(?, ?, ?, 1)";
 
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, signupUser.getName());
+            stmt.setString(2, signupUser.getEmail());
+            stmt.setString(3, signupUser.getPassword());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(stmt);
+        }
     }
 
     @Override
     public void updateUser(UpdateUser updateUser) {
+        String query = null;
+        PreparedStatement stmt = null;
 
+        try {
+            switch(updateUser.getUpdateType()) {
+                case UpdateType.NAME:
+                    query = "UPDATE `user_table` SET `name`=? WHERE `userid`=?";
+                    stmt = connection.prepareStatement(query);
+                    stmt.setString(1, updateUser.getName());
+                    stmt.setLong(2, updateUser.getUserId());
+                    stmt.executeUpdate();
+                    break;
+                case UpdateType.EMAIL:
+                    query = "UPDATE `user_table` SET `email`=? WHERE `userid`=?";
+                    stmt = connection.prepareStatement(query);
+                    stmt.setString(1, updateUser.getEmail());
+                    stmt.setLong(2, updateUser.getUserId());
+                    stmt.executeUpdate();
+                    break;
+                case UpdateType.PASSWORD:
+                    query = "UPDATE `user_table` SET `password`=? WHERE `userid`=?";
+                    stmt = connection.prepareStatement(query);
+                    stmt.setString(1, updateUser.getPassword());
+                    stmt.setLong(2, updateUser.getUserId());
+                    stmt.executeUpdate();
+                    break;
+                case UpdateType.VERIFIED:
+                    query = "UPDATE `user_table` SET `verified`=? WHERE `userid`=?";
+                    stmt = connection.prepareStatement(query);
+                    stmt.setInt(1, updateUser.getVerified());
+                    stmt.setLong(2, updateUser.getUserId());
+                    stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(stmt);
+        }
     }
 
     @Override
     public void deleteUser(Long userId) {
+        PreparedStatement stmt = null;
+        String query = "DELETE FROM `user_table` WHERE `userid`=? LIMIT 1";
 
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setLong(1, userId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(stmt);
+        }
+    }
+
+    private void close(PreparedStatement stmt) {
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

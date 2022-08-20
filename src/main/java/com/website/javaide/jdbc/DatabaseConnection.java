@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DatabaseConnection {
 
     private final String USR = "root";
-    private final String PWD = "12345";
+    private final String PWD = "root";
     private final String CLS = "com.mysql.cj.jdbc.Driver";
     private final String URL = "jdbc:mysql://localhost:3306/java_ide?autoReconnect=true&useSSL=false";
 

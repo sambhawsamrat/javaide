@@ -1,7 +1,7 @@
 <jsp:include page="/commons/header.jsp"></jsp:include>
 <jsp:include page="/commons/navigation.jsp"></jsp:include>
 
-<%@ page import="com.website.javaide.controller.FormType"%>
+<%@ page import="com.website.javaide.constants.FormType"%>
 
 <div class="container-fluid pb-lg-5" style="display: flex; flex-direction: row; justify-content: space-between">
     <div class="container-fluid">
@@ -20,7 +20,7 @@
                 <form method="post" action="/authentication">
                     <input type="text" placeholder="Enter email"/>
                     <input type="password" placeholder="Enter password"/>
-                    <input type="hidden" name="form-type" value="<%=FormType.LOGIN%>" readonly="readonly">
+                    <input type="hidden" name="form-type" value="<%=FormType.LOGIN_USER%>" readonly="readonly">
                     <button type="button" class="btn login">login</button>
                     <br>
                     <p><a href="javascript:void(0)">Forgot Password?</a></p>
@@ -31,7 +31,7 @@
                     <input type="text" placeholder="Your name"/>
                     <input type="email" placeholder="Your email address"/>
                     <input type="password" placeholder="Password"/>
-                    <input type="hidden" name="form-type" value="<%=FormType.SIGNUP%>" readonly="readonly">
+                    <input type="hidden" name="form-type" value="<%=FormType.SIGNUP_USER%>" readonly="readonly">
                     <button type="button" class="btn signup">create account</button>
                     <hr/>
                     <p>Clicking <strong>create account</strong> means that you are agree to our <a href="javascript:void(0)">terms of services</a>.</p>

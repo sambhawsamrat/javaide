@@ -5,13 +5,13 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private Boolean verified;
+    private Integer verified;
 
     public User(Long userId) {
         this.userId = userId;
     }
 
-    public User(Long userId, String name, String email, String password, Boolean verified) {
+    public User(Long userId, String name, String email, String password, Integer verified) {
         this.userId = userId;
         this.name = name;
         this.email = email;
@@ -47,11 +47,11 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getVerified() {
+    public Integer getVerified() {
         return verified;
     }
 
-    public void setVerified(Boolean verified) {
+    public void setVerified(Integer verified) {
         this.verified = verified;
     }
 }

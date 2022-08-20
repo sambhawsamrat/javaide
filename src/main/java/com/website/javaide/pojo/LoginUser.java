@@ -1,19 +1,13 @@
-package com.website.javaide.entity;
+package com.website.javaide.pojo;
 
-public class SignupUser {
+public class LoginUser {
 
-    private final String name;
     private final String email;
     private final String password;
 
-    public SignupUser(String name, String email, String password) {
-        this.name = name;
+    public LoginUser(String email, String password) {
         this.email = email;
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getEmail() {

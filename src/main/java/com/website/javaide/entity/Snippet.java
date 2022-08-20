@@ -8,14 +8,14 @@ public class Snippet {
     private String code;
     private String input;
     private String output;
-    private Boolean visibility;
+    private Integer visibility;
 
     public Snippet(Long userId, String hash) {
         this.userId = userId;
         this.hash = hash;
     }
 
-    public Snippet(Long userId, String hash, String description, String code, String input, String output, Boolean visibility) {
+    public Snippet(Long userId, String hash, String description, String code, String input, String output, Integer visibility) {
         this.userId = userId;
         this.hash = hash;
         this.description = description;
@@ -65,11 +65,11 @@ public class Snippet {
         this.output = output;
     }
 
-    public Boolean getVisibility() {
+    public Integer getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(Boolean visibility) {
+    public void setVisibility(Integer visibility) {
         this.visibility = visibility;
     }
 }
