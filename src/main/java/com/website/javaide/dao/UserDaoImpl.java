@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
     public User getUser(String email) {
         User user = null;
         PreparedStatement stmt = null;
-        String query = "SELECT `userid`, `name`, `password`, `verified` FROM `user_table` WHERE `email`=?";
+        String query = "SELECT * FROM `user_table` WHERE `email`=?";
 
         try {
             stmt = connection.prepareStatement(query);
@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void addUser(SignupUser signupUser) {
         PreparedStatement stmt = null;
-        String query = "INSERT INTO `user_table` (`name`, `email`, `password`, `verified`) VALUES(?, ?, ?, 1)";
+        String query = "INSERT INTO `user_table` (`name`, `email`, `password`) VALUES(?, ?, ?)";
 
         try {
             stmt = connection.prepareStatement(query);
@@ -99,10 +99,10 @@ public class UserDaoImpl implements UserDao {
                     stmt.executeUpdate();
                     break;
                 case UpdateType.VERIFIED:
-                    query = "UPDATE `user_table` SET `verified`=? WHERE `userid`=?";
+                    query = "UPDATE `user_table` SET `verified`=? WHERE `email`=?";
                     stmt = connection.prepareStatement(query);
                     stmt.setInt(1, updateUser.getVerified());
-                    stmt.setLong(2, updateUser.getUserId());
+                    stmt.setString(2, updateUser.getEmail());
                     stmt.executeUpdate();
             }
         } catch (SQLException e) {

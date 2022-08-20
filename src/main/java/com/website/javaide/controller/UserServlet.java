@@ -7,8 +7,8 @@ import java.sql.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name = "authenticationServlet", value = "/authentication")
-public class AuthenticationServlet extends HttpServlet {
+@WebServlet(name = "userServlet", value = "/user")
+public class UserServlet extends HttpServlet {
 
     private Connection connection;
 

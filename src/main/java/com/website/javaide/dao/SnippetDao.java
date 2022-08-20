@@ -10,6 +10,10 @@ public interface SnippetDao {
     void addSnippet(Snippet snippet);
     void updateSnippet(Snippet snippet);
     void deleteSnippet(Long userId, String hash);
-    List<Snippet> getPublicSnippets(int pageNumber);
-    List<Snippet> getPrivateSnippets(int pageNumber);
+    List<Snippet> getPublicSnippets(Long userId, int pageNumber);
+    List<Snippet> getPrivateSnippets(Long userId, int pageNumber);
+    int getPublicSnippetCount(Long userId);
+    int getPrivateSnippetCount(Long userId);
+    int getPublicSnippetPageCount(Long userId);
+    int getPrivateSnippetPageCount(Long userId);
 }
