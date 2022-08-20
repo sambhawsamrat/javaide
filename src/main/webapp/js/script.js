@@ -1,3 +1,13 @@
+/*document.getElementById("login-signup").addEventListener("click", function (){
+    document.getElementById("modal").style.display = "block";
+})
+
+window.onclick = function(event) {
+    if (event.target == modal-container) {
+        document.getElementById("modal").style.display = "none";
+    }
+}*/
+
 function toggleSignup(){
     document.getElementById("login-toggle").style.backgroundColor="#fff";
     document.getElementById("login-toggle").style.color="#000";
@@ -15,3 +25,4 @@ function toggleLogin(){
     document.getElementById("signup-form").style.display="none";
     document.getElementById("login-form").style.display="block";
 }
+

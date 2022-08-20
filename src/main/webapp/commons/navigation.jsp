@@ -27,15 +27,23 @@
 <%--                <li><a class="dropdown-item" href="#">Snippets</a></li>--%>
 <%--            </ul>--%>
 <%--        </div>--%>
-        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+       <%-- <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;&nbsp;Login
         </button>
 
         <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fas fa-user-plus"></i>&nbsp;&nbsp;&nbsp;Signup
+        </button>--%>
+
+
+        <button type="button" class="btn btn-outline-primary btn-sm mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Login / Signup
         </button>
 
-        <button class="btn btn-outline-primary btn-sm mx-4">
+
+        <%--<button type="button" class="btn btn-outline-primary btn-sm mx-4" id="login-signup">Login / Signup</button>--%>
+
+        <button class="btn btn-outline-primary btn-sm mx-4" style="display: none">
             <i class="fas fa-user"></i>&nbsp;&nbsp;&nbsp;Account
         </button>
     </nav>
