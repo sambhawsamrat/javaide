@@ -17,7 +17,7 @@
                 <button id="signup-toggle" onclick="toggleSignup()"><i class="fas fa-user-plus"></i>&nbsp;&nbsp;sign up</button>
             </div>
             <div id="login-form">
-                <form method="post" action="/user">
+                <form method="post" action="${pageContext.request.contextPath}/user">
                     <input type="text" placeholder="Enter email"/>
                     <input type="password" placeholder="Enter password"/>
                     <input type="hidden" name="form-type" value="<%=FormType.LOGIN_USER%>" readonly="readonly">
@@ -27,7 +27,7 @@
                 </form>
             </div>
             <div id="signup-form">
-                <form method="post" action="/user">
+                <form method="post" action="${pageContext.request.contextPath}/user">
                     <input type="text" placeholder="Your name"/>
                     <input type="email" placeholder="Your email address"/>
                     <input type="password" placeholder="Password"/>

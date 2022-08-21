@@ -1,7 +1,5 @@
 package com.website.javaide.pojo;
 
-import com.website.javaide.constants.UpdateType;
-
 public class UpdateUser {
 
     private final Long userId;

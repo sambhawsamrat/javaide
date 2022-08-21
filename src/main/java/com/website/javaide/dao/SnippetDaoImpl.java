@@ -42,6 +42,7 @@ public class SnippetDaoImpl implements SnippetDao {
                 snippet.setOutput(result.getString("output"));
             }
         } catch (SQLException e) {
+            snippet = null;
             e.printStackTrace();
         } finally {
             close(stmt);

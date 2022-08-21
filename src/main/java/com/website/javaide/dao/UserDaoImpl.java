@@ -39,6 +39,7 @@ public class UserDaoImpl implements UserDao {
                 user.setVerified(result.getInt("verified"));
             }
         } catch (SQLException e) {
+            user = null;
             e.printStackTrace();
         } finally {
             close(stmt);
